@@ -23,9 +23,6 @@
   merge= 0 
 
 [[custom_plugins]]
-  repo = 'skanehira/docker.vim'
-
-[[custom_plugins]]
   repo = 'psliwka/vim-smoothie' 
   merge=0
 
