@@ -12,7 +12,6 @@ COPY .  .
 RUN nvim --headless "+call dein#install#_update([], 'install', 0)" '+qall'
 RUN cd ~/.SpaceVim/bundle/vimproc.vim && make
 RUN nvim --headless +UpdateRemotePlugins +qall
-RUN mkdir -p /root/.local/share/nvim && mv rplugin.vim /root/.local/share/nvim/rplugin.vim
 RUN nvim --headless "+call dein#install#_update([], 'install', 0)" '+qall'
 RUN pacman -Scc --noconfirm
 RUN mkdir -p /workspace

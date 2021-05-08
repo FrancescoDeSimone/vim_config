@@ -5,30 +5,31 @@
     buffer_index_type = 4
     windows_index_type = 3
     enable_tabline_filetype_icon = false
-    enable_statusline_mode = false
-    statusline_unicode_symbols = false
+    enable_statusline_mode = true
+    statusline_unicode_symbols = true
     vimcompatible = true
     filemanager = "nerdtree"
     filetree_direction = "left"
     snippet_engine = "ultisnips"
-    bootstrap_before = 'myspacevim#before'
     bootstrap_after = 'myspacevim#after'
 
 [[custom_plugins]]
+  repo = 'mjbrownie/django_completeme'
+
+[[custom_plugins]]
+  repo = 'tweekmonster/django-plus.vim'
+
+[[custom_plugins]]
   repo = 'sukima/xmledit'
-  merge=0 
 
 [[custom_plugins]]
   repo = 'jmcomets/vim-pony'
-  merge=0 
 
 [[custom_plugins]]
   repo = 'rafi/awesome-vim-colorschemes'
-  merge=0 
 
 [[custom_plugins]]
   repo = 'kdheepak/lazygit.nvim'
-  merge=0 
 
 [[layers]]
   name = "checkers"
@@ -52,6 +53,9 @@
   default_height = 30
 
 [[layers]]
+  name = "lang#xml"
+
+[[layers]]
   name = "lang#c"
   enable_clang_syntax_highlight = true
   clang_executable = "/usr/bin/clang"
@@ -68,7 +72,10 @@
 [[layers]]
   name = "lsp"
   filetypes = [
-    "rust"
+    "rust",
+    "python",
+    "cpp",
+    "javascript"
   ]
   [layers.override_cmd]
     rust = ["rls"]
@@ -80,9 +87,37 @@
 
 [[layers]]
   name = "git"
+  git_plugin = 'fugitive'
+
+[[layers]]
+  name = "VersionControl"
+
+[[layers]]
+  name = "lang#toml"
 
 [[layers]]
   name = "lang#rust"
+
+[[layers]]
+  name = "lang#toml"
+
+[[layers]]
+  name = "lang#sh"
+
+[[layers]]
+  name = "lang#latex"
+
+[[layers]]
+  name = "lang#extra"
+
+[[layers]]
+  name = "lang#dockerfile"
+
+[[layers]]
+  name = "github"
+
+[[layers]]
+  name = "fzf"
 
 [[layers]]
   name = "lang#python"
