@@ -17,6 +17,9 @@
   repo = 'mjbrownie/django_completeme'
 
 [[custom_plugins]]
+  repo = 'unblevable/quick-scope'
+
+[[custom_plugins]]
   repo = 'tweekmonster/django-plus.vim'
 
 [[custom_plugins]]
@@ -75,6 +78,7 @@
     "rust",
     "python",
     "cpp",
+    "css",
     "javascript"
   ]
   [layers.override_cmd]
