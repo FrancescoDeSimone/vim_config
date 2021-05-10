@@ -3,4 +3,4 @@ Name=nvim
 Exec=nvim
 Icon=icon
 Type=Application
-Categories=Utility
+Categories=Utility;
