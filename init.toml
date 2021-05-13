@@ -112,6 +112,9 @@
   name = "lang#latex"
 
 [[layers]]
+  name = "lang#markdown"
+
+[[layers]]
   name = "lang#extra"
 
 [[layers]]
