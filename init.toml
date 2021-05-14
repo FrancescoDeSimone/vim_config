@@ -1,5 +1,6 @@
 [options]
     colorscheme = "onedark"
+    automatic_update = true
     enable_guicolors = true 
     statusline_iseparator = "bar"
     buffer_index_type = 4
@@ -12,6 +13,7 @@
     filetree_direction = "left"
     snippet_engine = "ultisnips"
     bootstrap_after = 'myspacevim#after'
+    windows_leader = "s"
 
 [[custom_plugins]]
   repo = 'mjbrownie/django_completeme'
@@ -33,6 +35,9 @@
 
 [[custom_plugins]]
   repo = 'kdheepak/lazygit.nvim'
+
+[[layers]]
+    name = "incsearch"
 
 [[layers]]
   name = "checkers"
@@ -77,6 +82,7 @@
   filetypes = [
     "rust",
     "python",
+    "sh",
     "cpp",
     "css",
     "javascript"
