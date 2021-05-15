@@ -35,6 +35,7 @@
 
 [[custom_plugins]]
   repo = 'kdheepak/lazygit.nvim'
+  branch = 'nvim-v0.4.3'
 
 [[layers]]
     name = "incsearch"
@@ -115,6 +116,12 @@
   name = "lang#sh"
 
 [[layers]]
+  name = "sudo"
+
+[[layers]]
+    name = "foldsearch"
+
+[[layers]]
   name = "lang#latex"
 
 [[layers]]
@@ -125,6 +132,15 @@
 
 [[layers]]
   name = "lang#dockerfile"
+
+[[layers]]
+  name = "lang#vim"
+
+[[layers]]
+    name = "tools"
+
+[[layers]]
+  name = "leaderf"
 
 [[layers]]
   name = "github"
