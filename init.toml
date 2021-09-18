@@ -31,6 +31,12 @@
   repo = 'jmcomets/vim-pony'
 
 [[custom_plugins]]
+  repo = 'yuratomo/w3m.vim'
+
+[[custom_plugins]]
+  repo = 'hienvd/vim-stackoverflow'
+
+[[custom_plugins]]
   repo = 'rafi/awesome-vim-colorschemes'
 
 [[custom_plugins]]
