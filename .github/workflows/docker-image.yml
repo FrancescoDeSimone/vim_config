@@ -22,4 +22,6 @@ jobs:
           ./build_appimage.sh
       - uses: actions/upload-artifact@v2
         with:
-          name: AppImage
+          name: nvim.AppImage
+          path: nvim.AppImage
+

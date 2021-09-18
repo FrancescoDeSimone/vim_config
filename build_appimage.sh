@@ -75,7 +75,8 @@ create_appimage(){
     appimagetool="$folder/appimage"
     wget -O "$appimagetool" https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
     chmod +x $appimagetool
-    $appimagetool ./AppDir
+    $appimagetool ./AppDir nvim.AppImage
+    echo "readlink -f $(pwd)/nvim"
     rm -rf "$folder"
 }
 
