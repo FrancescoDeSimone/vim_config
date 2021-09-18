@@ -34,6 +34,9 @@
   repo = 'yuratomo/w3m.vim'
 
 [[custom_plugins]]
+  repo = 'vim-scripts/TTrCodeAssistor'
+
+[[custom_plugins]]
   repo = 'hienvd/vim-stackoverflow'
 
 [[custom_plugins]]
