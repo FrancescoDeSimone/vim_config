@@ -19,14 +19,14 @@ clone_spacevim(){
 
 install_ctags(){
     folder=$(mktemp -d)
-    pushd $folder
+    pushd "$folder"
     wget http://prdownloads.sourceforge.net/ctags/ctags-5.8.tar.gz
     tar xf ctags-5.8.tar.gz
-    ./ctags-5.8/configure --prefix=$folder
+    ./ctags-5.8/configure --prefix="$folder"
     make 
     popd    
-    cp $folder/ctags ./AppDir/usr/bin
-    rm -rf $folder
+    cp "$folder"/ctags ./AppDir/usr/bin
+    rm -rf "$folder"
 }
 
 copy_binary(){
@@ -70,6 +70,14 @@ install_rust_dep(){
     rm -rf ./AppDir/rust
 }
 
+create_appimage(){
+    folder=$(mktemp -d)
+    appimagetool="$folder/appimage"
+    wget -O "$appimagetool" https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+    $appimagetool ./AppDir
+    rm -rf "$folder"
+}
+
 
 clean_up
 clone_spacevim
@@ -77,5 +85,5 @@ copy_binary
 install_python_dep
 install_node_dep
 install_rust_dep
-appimagetool AppDir
+create_appimage
 clean_up
