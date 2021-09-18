@@ -20,8 +20,11 @@ jobs:
       - name: Build AppImage
         run: |
           ./build_appimage.sh
-      - uses: actions/upload-artifact@v2
+      - uses: ncipollo/release-action@v1
         with:
           name: nvim.AppImage
-          path: nvim.AppImage
+          artifacts: nvim.AppImage
+          token: ${{ secrets.GITHUB_TOKEN }}
+          allowUpdates: True
+
 
