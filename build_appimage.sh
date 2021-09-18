@@ -74,6 +74,7 @@ create_appimage(){
     folder=$(mktemp -d)
     appimagetool="$folder/appimage"
     wget -O "$appimagetool" https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+    chmod +x $appimagetool
     $appimagetool ./AppDir
     rm -rf "$folder"
 }
