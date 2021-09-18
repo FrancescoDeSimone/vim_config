@@ -26,5 +26,7 @@ jobs:
           artifacts: nvim.AppImage
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: True
+          tag: continuous
+
 
 
