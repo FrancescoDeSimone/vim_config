@@ -26,7 +26,7 @@ jobs:
           artifacts: nvim.AppImage
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: True
-          tag: ${GITHUB_SHA}"
+          tag: ${GITHUB_SHA}
 
 
 
