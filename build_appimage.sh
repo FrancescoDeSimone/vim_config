@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -xeu
 
 clean_up(){
@@ -17,8 +17,25 @@ clone_spacevim(){
     cp -r ./autoload ./AppDir/SpaceVim.d/autoload
 }
 
+install_ctags(){
+    folder=$(mktemp -d)
+    pushd $folder
+    wget http://prdownloads.sourceforge.net/ctags/ctags-5.8.tar.gz
+    tar xf ctags-5.8.tar.gz
+    ./ctags-5.8/configure --prefix=$folder
+    make 
+    popd    
+    cp $folder/ctags ./AppDir/usr/bin
+    rm -rf $folder
+}
+
 copy_binary(){
-    mkdir ./AppDir/usr/bin
+    mkdir -p ./AppDir/usr/bin
+    wget -O ./AppDir/usr/bin/nvim \
+       https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    chmod u+x ./AppDir/usr/bin/nvim
+    install_ctags
+
     find ./AppDir/usr -type f -exec cp "{}" ./AppDir/usr/bin \;
 }
 
@@ -44,8 +61,12 @@ install_node_dep(){
 
 install_rust_dep(){
     mkdir ./AppDir/rust
-    RUSTUP_TOOLCHAIN="stable" RUSTUP_HOME="./AppDir/rust" CARGO_HOME="./AppDir/rust" rustup component add rls rust-analysis rust-src 
-    cp ./AppDir/rust/toolchains/stable-x86_64-unknown-linux-gnu/bin/* ./AppDir/usr/bin
+    RUSTUP_TOOLCHAIN="stable" \
+    RUSTUP_HOME="./AppDir/rust" \
+    CARGO_HOME="./AppDir/rust" \
+    rustup component add rls rust-analysis rust-src 
+    cp ./AppDir/rust/toolchains/stable-x86_64-unknown-linux-gnu/bin/* \
+       ./AppDir/usr/bin
     rm -rf ./AppDir/rust
 }
 
