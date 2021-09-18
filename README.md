@@ -2,7 +2,13 @@
 
 Custom spacevim config
 
-# Required for lsp 
+# Install guide
+You can generate an AppImage from the [build_appimage.sh](https://github.com/FrancescoDeSimone/vim_config/blob/master/build_appimage.sh) script or you can clone [SpaceVim](https://spacevim.org/quick-start-guide/) and copy my init.toml file.
+   
+   A prebuild AppImage is available in [release](https://github.com/FrancescoDeSimone/vim_config/releases)
+
+
+## Required for lsp 
 - **clangd** <br> 
 ```
   yay -S vim-coc-clangd-git
