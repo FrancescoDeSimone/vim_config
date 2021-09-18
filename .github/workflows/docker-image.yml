@@ -20,10 +20,7 @@ jobs:
       - name: Build AppImage
         run: |
           build_appimage.sh
-        env:
           UPDATE_INFO: gh-releases-zsync|AppImageCrafters|nvim|latest|*x86_64.AppImage.zsync
-        with:
-          recipe: AppImageBuilder.yml
       - uses: actions/upload-artifact@v2
         with:
           name: AppImage
