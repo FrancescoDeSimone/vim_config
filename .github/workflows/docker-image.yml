@@ -21,14 +21,14 @@ jobs:
         run: |
           ./build_appimage.sh
       - name: set env
-        run: echo "::set-env name=NOW::$(date +'%Y-%m-%dT%H:%M:%S')"
+        run: "export tagnow=$(git rev-parse --short HEAD)"
       - uses: ncipollo/release-action@v1
         with:
           name: nvim.AppImage
           artifacts: nvim.AppImage
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: True
-          tag: ${{ env.NOW }}
+          tag: ${{ $tagnow }}
 
 
 
