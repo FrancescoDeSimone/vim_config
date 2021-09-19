@@ -23,12 +23,12 @@ jobs:
       - name: set env
         run: "export tagnow=$(git rev-parse --short HEAD)"
       - uses: ncipollo/release-action@v1
+      - uses: benjlevesque/short-sha@v1.2
         with:
           name: nvim.AppImage
           artifacts: nvim.AppImage
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: True
-          tag: ${{ github.sha:0:7 }}
-
+          tag: ${{ steps.short-sha.outputs.sha }}
 
 
