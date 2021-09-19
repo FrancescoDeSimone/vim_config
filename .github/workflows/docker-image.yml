@@ -2,9 +2,9 @@ name: SpaceVim appimage
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build-appimage:
