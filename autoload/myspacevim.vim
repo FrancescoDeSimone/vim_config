@@ -29,4 +29,5 @@ function! myspacevim#after() abort
     autocmd BufEnter * :syn sync maxlines=500
     let mapleader=","
     set shiftwidth=4
+    set splitright
 endfunction
