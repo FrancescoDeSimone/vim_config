@@ -15,20 +15,12 @@
     bootstrap_after = 'myspacevim#after'
     windows_leader = "s"
 
-[[custom_plugins]]
-  repo = 'mjbrownie/django_completeme'
 
 [[custom_plugins]]
   repo = 'unblevable/quick-scope'
 
 [[custom_plugins]]
-  repo = 'tweekmonster/django-plus.vim'
-
-[[custom_plugins]]
   repo = 'sukima/xmledit'
-
-[[custom_plugins]]
-  repo = 'jmcomets/vim-pony'
 
 [[custom_plugins]]
   repo = 'yuratomo/w3m.vim'
