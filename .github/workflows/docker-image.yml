@@ -20,15 +20,19 @@ jobs:
       - name: Build AppImage
         run: |
           ./build_appimage.sh
-      - name: set env
-        run: "export tagnow=$(git rev-parse --short HEAD)"
-      - uses: ncipollo/release-action@v1
       - uses: benjlevesque/short-sha@v1.2
+        id: short-sha
+        with:
+          length: 6
+      - run: echo $SHA
+      - uses: ncipollo/release-action@v1
+        env: 
+          SHA: ${{ steps.short-sha.outputs.sha }}
         with:
           name: nvim.AppImage
           artifacts: nvim.AppImage
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: True
-          tag: ${{ steps.short-sha.outputs.sha }}
+          tag: ${{ env.SHA }}
 
 
