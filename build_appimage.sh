@@ -8,6 +8,7 @@ clean_up(){
     rm -fr "$HERE"/AppDir/SpaceVim.d
     rm -fr "$HERE"/AppDir/SpaceVim
     rm -fr "$HERE"/AppDir/rust
+    rm -fr "$HERE"/AppDir/usr
 }
 
 clone_spacevim(){
@@ -33,7 +34,7 @@ install_python(){
     folder=$(mktemp -d)
     git clone https://github.com/python/cpython "$folder"/cpython
     pushd "$folder"/cpython
-    ./configure --prefix="$HERE"/AppDir/usr/bin
+    ./configure --prefix="$HERE"/AppDir/usr
     make install 
     popd
     rm -rf "$folder"
