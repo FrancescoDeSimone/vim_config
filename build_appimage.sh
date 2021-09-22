@@ -36,13 +36,18 @@ copy_binary(){
     chmod u+x ./AppDir/usr/bin/nvim
     install_ctags
 
+    folder=$(mktemp -d)
+    wget -O "$folder"/fzf.tar.gz https://github.com/junegunn/fzf/releases/download/0.27.2/fzf-0.27.2-linux_amd64.tar.gz
+    tar xfv "$folder"/fzf.tar.gz -C ./AppDir/usr/bin
+    rm -rf "$folder"
+
     find ./AppDir/usr -type f -exec cp "{}" ./AppDir/usr/bin \;
 }
 
 install_python_dep(){
     mkdir -p ./AppDir/python
     PIP_TARGET="./AppDir/python" pip install --target="./AppDir/python" \
-        python-language-server yapf isort coverage autoflake pylint 
+        python-language-server pynvim yapf isort coverage autoflake pylint 
     cp ./AppDir/python/bin/* ./AppDir/usr/bin
     rm -rf ./AppDir/python
 }
@@ -74,7 +79,7 @@ create_appimage(){
     folder=$(mktemp -d)
     appimagetool="$folder/appimage"
     wget -O "$appimagetool" https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-    chmod +x $appimagetool
+    chmod +x "$appimagetool"
     $appimagetool ./AppDir nvim.AppImage
     echo "readlink -f $(pwd)/nvim"
     rm -rf "$folder"
