@@ -5,9 +5,7 @@ function! myspacevim#after() abort
     set termguicolors
     set incsearch
     set hlsearch
-    set foldenable
-    set foldlevelstart=10
-    set lazyredraw
+    set foldlevelstart=5
     set showbreak=<--
     set smartindent
     set smartcase
@@ -30,4 +28,12 @@ function! myspacevim#after() abort
     let mapleader=","
     set shiftwidth=4
     set splitright
+    set nocompatible
+    filetype plugin indent on
+    set foldenable
+    set foldmethod=marker
+    au FileType sh let g:sh_fold_enabled=5
+    au FileType sh let g:is_bash=1
+    au FileType sh set foldmethod=syntax
+    syntax enable
 endfunction
