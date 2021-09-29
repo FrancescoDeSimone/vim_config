@@ -40,6 +40,18 @@ install_python(){
     rm -rf "$folder"
 }
 
+install_w3m(){
+    folder=$(mktemp -d)
+    wget "https://downloads.sourceforge.net/project/w3m/w3m/w3m-0.5.3/w3m-0.5.3.tar.gz?ts=gAAAAABhVINjyLwoN_SFHantO-PArUK14AAHsFLQ8JJMZ9V5kK_ippHDInZCtQK244-BmnauDaply5MiVXF0X3LvQKS3f5dMXw%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fw3m%2Ffiles%2Flatest%2Fdownload" -O "${folder}"/w3m.tar.gz
+    tar zxfv ${folder}/w3m.tar.gz -C "${folder}"
+    pushd "${folder}/w3m-0.5.3"
+    ./configure --prefix="${HERE}"/AppDir/usr
+    make
+    make install 
+    popd
+    rm -rf "$folder"
+}
+
 install_clangd(){
     folder=$(mktemp -d)
     pushd "$folder"
@@ -113,6 +125,7 @@ clone_spacevim
 install_nvim
 install_ctags
 install_python
+install_w3m
 install_clangd
 install_fzf
 install_python_dep
