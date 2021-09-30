@@ -53,8 +53,9 @@ install_w3m(){
 install_node(){
     folder=$(mktemp -d)
     mkdir -p "${folder}/node"
-    wget -O "${folder}/node" https://nodejs.org/dist/v16.10.0/node-v16.10.0.tar.gz 
-    pushd "${folder}/node"
+    wget -O "${folder}/node/node.tar.gz" https://nodejs.org/dist/v16.10.0/node-v16.10.0.tar.gz 
+    tar xfv "${folder}/node/node.tar.gz" -C "${folder}/node/"
+    pushd "${folder}/node/node-v16.10.0"
     ./configure --prefix="$HERE"/AppDir/usr
     make install
     popd
