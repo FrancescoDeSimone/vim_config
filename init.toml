@@ -36,6 +36,15 @@
   repo = 'rafi/awesome-vim-colorschemes'
 
 [[custom_plugins]]
+  repo = 'will133/vim-dirdiff'
+
+[[custom_plugins]]
+  repo = 'sindrets/diffview.nvim'
+
+[[custom_plugins]]
+  repo = 'kyazdani42/nvim-web-devicons'
+
+[[custom_plugins]]
   repo = 'kdheepak/lazygit.nvim'
   branch = 'nvim-v0.4.3'
 
