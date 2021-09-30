@@ -145,6 +145,7 @@ install_nvim
 install_ctags
 install_python
 install_w3m
+install_node
 install_clangd
 install_fzf
 install_python_dep
