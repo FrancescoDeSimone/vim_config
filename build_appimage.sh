@@ -21,7 +21,7 @@ clone_spacevim(){
 install_ctags(){
     folder=$(mktemp -d)
     pushd "$folder"
-    wget -O "ctags-5.8.tar.gz https://downloads.sourceforge.net/project/ctags/ctags/5.8/ctags-5.8.tar.gz?ts=gAAAAABhVig-0KsAvW6tVuNcFgiNvwbCluzgM58ZN_fKgNceqG8BfqdPaBXsuDK-I2VvpsNkD6-ctuOi8kuVTWlRFLCCbru1GQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fctags%2Ffiles%2Fctags%2F5.8%2Fctags-5.8.tar.gz%2Fdownload%3Fuse_mirror%3Dautoselect"  #http://prdownloads.sourceforge.net/ctags/ctags-5.8.tar.gz
+    wget -O ctags-5.8.tar.gz "https://downloads.sourceforge.net/project/ctags/ctags/5.8/ctags-5.8.tar.gz?ts=gAAAAABhVig-0KsAvW6tVuNcFgiNvwbCluzgM58ZN_fKgNceqG8BfqdPaBXsuDK-I2VvpsNkD6-ctuOi8kuVTWlRFLCCbru1GQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fctags%2Ffiles%2Fctags%2F5.8%2Fctags-5.8.tar.gz%2Fdownload%3Fuse_mirror%3Dautoselect"  #http://prdownloads.sourceforge.net/ctags/ctags-5.8.tar.gz
     tar xf ctags-5.8.tar.gz
     ./ctags-5.8/configure --prefix="$folder"
     make 
