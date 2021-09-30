@@ -42,12 +42,10 @@ install_python(){
 
 install_w3m(){
     folder=$(mktemp -d)
-    wget "https://downloads.sourceforge.net/project/w3m/w3m/w3m-0.5.3/w3m-0.5.3.tar.gz?ts=gAAAAABhVINjyLwoN_SFHantO-PArUK14AAHsFLQ8JJMZ9V5kK_ippHDInZCtQK244-BmnauDaply5MiVXF0X3LvQKS3f5dMXw%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fw3m%2Ffiles%2Flatest%2Fdownload" -O "${folder}"/w3m.tar.gz
-    tar zxfv ${folder}/w3m.tar.gz -C "${folder}"
-    pushd "${folder}/w3m-0.5.3"
-    ./configure --prefix="${HERE}"/AppDir/usr
-    make
-    make install 
+    git clone https://salsa.debian.org/debian/w3m "${folder}/w3m"
+    pushd "${folder}/w3m"
+    ./configure --prefix="$HERE"/AppDir/usr
+    make install
     popd
     rm -rf "$folder"
 }
@@ -56,7 +54,7 @@ install_clangd(){
     folder=$(mktemp -d)
     pushd "$folder"
     wget -O clangd.zip https://github.com/clangd/clangd/releases/download/12.0.1/clangd-linux-12.0.1.zip
-    unzip clangd.zip -d $(pwd)/clangd
+    unzip clangd.zip -d "$(pwd)"/clangd
     popd    
     cp "$folder"/clangd/clangd_12.0.1/bin/clangd "$HERE"/AppDir/usr/bin
     rm -rf "$folder"
@@ -79,7 +77,7 @@ install_nvim(){
 
 install_python_dep(){
     mkdir -p "$HERE"/AppDir/python
-    PIP_TARGET=""$HERE"/AppDir/python" pip install --target=""$HERE"/AppDir/python" \
+    PIP_TARGET="${HERE}/AppDir/python" pip install --target="${HERE}/AppDir/python" \
         python-language-server pynvim yapf isort coverage autoflake pylint 
     cp "$HERE"/AppDir/python/bin/* "$HERE"/AppDir/usr/bin
     rm -rf "$HERE"/AppDir/python
@@ -100,8 +98,8 @@ install_node_dep(){
 install_rust_dep(){
     mkdir "$HERE"/AppDir/rust
     RUSTUP_TOOLCHAIN="stable" \
-    RUSTUP_HOME=""$HERE"/AppDir/rust" \
-    CARGO_HOME=""$HERE"/AppDir/rust" \
+    RUSTUP_HOME="${HERE}/AppDir/rust" \
+    CARGO_HOME="${HERE}/AppDir/rust" \
     rustup component add rls rust-analysis rust-src 
     cp "$HERE"/AppDir/rust/toolchains/stable-x86_64-unknown-linux-gnu/bin/* \
        "$HERE"/AppDir/usr/bin
