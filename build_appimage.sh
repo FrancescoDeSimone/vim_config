@@ -138,7 +138,6 @@ create_appimage(){
     rm -rf "$folder"
 }
 
-
 HERE="$(dirname "$(readlink -f "${0}")")"
 clean_up
 clone_spacevim
