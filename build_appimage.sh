@@ -50,6 +50,27 @@ install_w3m(){
     rm -rf "$folder"
 }
 
+install_node(){
+    folder=$(mktemp -d)
+    mkdir -p "${folder}/node"
+    wget -O "${folder}/node" https://nodejs.org/dist/v16.10.0/node-v16.10.0.tar.gz 
+    pushd "${folder}/node"
+    ./configure --prefix="$HERE"/AppDir/usr
+    make install
+    popd
+    rm -rf "$folder"
+}
+
+install_w3m(){
+    folder=$(mktemp -d)
+    git clone https://salsa.debian.org/debian/w3m "${folder}/w3m"
+    pushd "${folder}/w3m"
+    ./configure --prefix="$HERE"/AppDir/usr
+    make install
+    popd
+    rm -rf "$folder"
+}
+
 install_clangd(){
     folder=$(mktemp -d)
     pushd "$folder"
