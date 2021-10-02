@@ -1,4 +1,4 @@
 #!/bin/sh
 HERE="$(dirname "$(readlink -f "${0}")")"
-PATH="$PATH:$HERE/usr/bin" SPACEVIMDIR="$HERE"/SpaceVim.d/ ${HERE}/usr/bin/nvim -u $HERE/SpaceVim/vimrc
+LD_LIBRARY_PATH="$HERE/usr/lib:$LD_LIBRARY_PATH" PATH="$HERE/usr/bin:$PATH" SPACEVIMDIR="$HERE"/SpaceVim.d/ ${HERE}/usr/bin/nvim -u $HERE/SpaceVim/vimrc
 
