@@ -13,6 +13,7 @@
     filetree_direction = "left"
     snippet_engine = "ultisnips"
     bootstrap_after = 'myspacevim#after'
+    bootstrap_before = 'myspacevim#before'
     windows_leader = "s"
     autocomplete_method = "coc"
 

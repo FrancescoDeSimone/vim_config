@@ -1,11 +1,12 @@
 function! myspacevim#after() abort
+    let g:startify_custom_header = startify#pad(split(system('curl -ss "https://wttr.in/naples?2pTQ"'), '\n'))
     set expandtab
     set tabstop=4
     set cc=80
     set termguicolors
     set incsearch
     set hlsearch
-    set foldlevelstart=5
+    set foldlevelstart=10
     set showbreak=<--
     set smartindent
     set smartcase
@@ -33,4 +34,12 @@ function! myspacevim#after() abort
     set foldenable
     set foldmethod=marker
     set foldmethod=indent
+    nnoremap sq :q<CR>
+    nnoremap <M-q> :bd<CR>
 endfunction
+
+function! myspacevim#before() abort
+endfunction
+
+
+
