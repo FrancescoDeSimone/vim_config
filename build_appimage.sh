@@ -35,7 +35,7 @@ install_python(){
     git clone https://github.com/python/cpython "$folder"/cpython
     pushd "$folder"/cpython
     ./configure --prefix="$HERE"/AppDir/usr
-    make install 
+    make install -j "$(nproc)" 
     popd
     rm -rf "$folder"
 }
@@ -57,7 +57,7 @@ install_node(){
     tar xfv "${folder}/node/node.tar.gz" -C "${folder}/node/"
     pushd "${folder}/node/node-v16.10.0"
     ./configure --prefix="$HERE"/AppDir/usr
-    make install
+    make install -j "$(nproc)" 
     popd
     rm -rf "$folder"
 }
