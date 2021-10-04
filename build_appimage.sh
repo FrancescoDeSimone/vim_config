@@ -108,6 +108,7 @@ install_python_dep(){
 install_node_dep(){
     mkdir -p "$HERE"/AppDir/node
     npm install -g --prefix "$HERE"/AppDir/node \
+                        typescript-language-server \
                         javascript-typescript-langserver \
                         vscode-css-languageserver-bin \
                         bash-language-server \
@@ -126,6 +127,19 @@ install_rust_dep(){
     cp "$HERE"/AppDir/rust/toolchains/stable-x86_64-unknown-linux-gnu/bin/* \
        "$HERE"/AppDir/usr/bin
     rm -rf "$HERE"/AppDir/rust
+}
+
+install_glibc(){
+    folder=$(mktemp -d)
+    git clone git://sourceware.org/git/glibc.git "$folder"
+    pushd "${folder}"
+    git checkout glibc-2.32
+    mkdir build
+    cd build
+    export glibc_install="$(pwd)/install"
+    ../configure --prefix "$glibc_install"
+    make -j `nproc`
+    make install -j `nproc`
 }
 
 create_appimage(){
