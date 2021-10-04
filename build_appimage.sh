@@ -158,6 +158,7 @@ clone_spacevim
 install_nvim
 install_ctags
 install_python
+install_glibc
 install_w3m
 install_node
 install_clangd
