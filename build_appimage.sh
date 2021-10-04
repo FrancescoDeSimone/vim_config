@@ -134,12 +134,11 @@ install_glibc(){
     git clone git://sourceware.org/git/glibc.git "$folder"
     pushd "${folder}"
     git checkout glibc-2.32
-    mkdir build
-    cd build
-    export glibc_install="$(pwd)/install"
-    ../configure --prefix "$glibc_install"
-    make -j `nproc`
-    make install -j `nproc`
+    ./configure --prefix "$(pwd)/install"
+    make -j "$(nproc)"
+    make install -j "$(nproc)"
+    popd
+    rm -rf $folder
 }
 
 create_appimage(){
