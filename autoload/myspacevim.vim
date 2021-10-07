@@ -1,5 +1,4 @@
 function! myspacevim#after() abort
-    let g:startify_custom_header = startify#pad(split(system('curl -ss "https://wttr.in/naples?2pTQ"'), '\n'))
     set expandtab
     set tabstop=4
     set cc=80
@@ -34,12 +33,10 @@ function! myspacevim#after() abort
     set foldenable
     set foldmethod=marker
     set foldmethod=indent
+    let g:coc_global_extensions = ['coc-prettier','coc-clangd','coc-cmake','coc-css','coc-cssmodules','coc-deno','coc-calc','coc-browser','coc-explorer','coc-dot-complete','coc-diagnostic','coc-eslint','coc-flutter','coc-git','coc-graphql','coc-java','coc-jedi','coc-json','coc-just-complete','coc-markdownlint','coc-markdown-preview-enhanced','coc-rls','coc-rome','coc-rust-analyzer','coc-sh','coc-snippets','coc-tabnine','coc-tsserver','coc-toml','coc-xml','coc-yaml','coc-webview','coc-translator','coc-texlab']
     nnoremap sq :q<CR>
-    nnoremap <M-q> :bd<CR>
+    nnoremap wq :bd<CR>
 endfunction
 
 function! myspacevim#before() abort
 endfunction
-
-
-

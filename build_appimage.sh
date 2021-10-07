@@ -154,13 +154,13 @@ create_appimage(){
     rm -rf "$folder"
 }
 
+trap clean_up EXIT
 HERE="$(dirname "$(readlink -f "${0}")")"
-clean_up
 clone_spacevim
 install_nvim
 install_ctags
 install_python
-install_glibc
+#install_glibc
 install_w3m
 install_node
 install_clangd
@@ -169,4 +169,3 @@ install_python_dep
 install_node_dep
 install_rust_dep
 create_appimage
-clean_up
