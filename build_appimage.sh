@@ -133,10 +133,10 @@ install_glibc(){
     folder=$(mktemp -d)
     git clone git://sourceware.org/git/glibc.git "$folder"
     pushd "${folder}"
-    git checkout glibc-2.32
+    git checkout release/2.34/master
     mkdir build
     pushd ./build
-    ../configure --prefix "$(pwd)/install"
+    ../configure --prefix="$HERE"/AppDir/usr
     make -j "$(nproc)"
     make install -j "$(nproc)"
     popd
@@ -160,7 +160,7 @@ clone_spacevim
 install_nvim
 install_ctags
 install_python
-#install_glibc
+install_glibc
 install_w3m
 install_node
 install_clangd
