@@ -3,6 +3,10 @@
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
+lvim.builtin.notify.active = true
+lvim.autocommands.custom_groups = {
+      {"BufWritePre", "*", ":%s/\\s\\+$//e"},
+}
 
 --nvim
 vim.opt.colorcolumn = "80"
@@ -182,25 +186,25 @@ lvim.plugins = {
       event = { "BufRead", "BufNew" },
       config = function()
       require("bqf").setup({
-              auto_enable = true,
-              preview = {
-              win_height = 12,
-              win_vheight = 12,
-              delay_syntax = 80,
-              border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
-              },
-              func_map = {
+                              auto_enable = true,
+                              preview = {
+                              win_height = 12,
+                              win_vheight = 12,
+                              delay_syntax = 80,
+                              border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
+                          },
+      func_map = {
               vsplit = "",
               ptogglemode = "z,",
               stoggleup = "",
-              },
-              filter = {
+          },
+          filter = {
               fzf = {
-              action_for = { ["ctrl-s"] = "split" },
-              extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+                  action_for = { ["ctrl-s"] = "split" },
+                  extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
               },
-              },
-              })
+          },
+      })
       end,
     },
     {
@@ -211,10 +215,10 @@ lvim.plugins = {
       "npxbr/glow.nvim",
       ft = {"markdown"}
     },
-    {"fabi1cazenave/termopen.vim"}
+    {"fabi1cazenave/termopen.vim"},
 }
 
--- bash 
+-- bash
 lvim.lang.sh.linters = { { exe = "shellcheck" } }
 lvim.lang.rust.lsp = {{ exe = "rustfmt" }}
 
