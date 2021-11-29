@@ -4,6 +4,7 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
 lvim.builtin.notify.active = true
+lvim.lsp.automatic_servers_installation = true
 lvim.autocommands.custom_groups = {
       {"BufWritePre", "*", ":%s/\\s\\+$//e"},
 }
@@ -15,7 +16,7 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.foldlevelstart=10
+vim.opt.foldlevelstart=20
 vim.opt.showbreak="<--"
 vim.opt.linebreak = true
 vim.opt.wrap = true
@@ -51,15 +52,14 @@ lvim.keys.normal_mode["<A-9>"] = ":BufferGoto 9<cr>"
 lvim.keys.normal_mode["<A-p>"] = ":BufferPick<cr>"
 lvim.keys.normal_mode["<S-s>"] = ":lua require('spectre').open()<CR>"
 lvim.keys.term_mode["<Esc>"] = "<C-\\><C-n><cr>"
-
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.open_on_setup = true
 lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.nvimtree.hide_dotfiles = 0
+lvim.builtin.nvimtree.active = true
+lvim.builtin.treesitter.highlight.enabled = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -76,7 +76,6 @@ lvim.builtin.treesitter.ensure_installed = {
   "yaml",
 }
 
-lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
@@ -163,25 +162,6 @@ lvim.plugins = {
       end,
     },
     {
-      "karb94/neoscroll.nvim",
-      event = "WinScrolled",
-      config = function()
-      require('neoscroll').setup({
-            -- All these keys will be mapped to their corresponding default scrolling animation
-            mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
-            '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
-            hide_cursor = true,          -- Hide cursor while scrolling
-            stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-            use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-            respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-            cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-            easing_function = nil,        -- Default easing function
-            pre_hook = nil,              -- Function to run before the scrolling animation starts
-            post_hook = nil,              -- Function to run after the scrolling animation ends
-            })
-      end
-    },
-    {
       "kevinhwang91/nvim-bqf",
       event = { "BufRead", "BufNew" },
       config = function()
@@ -211,21 +191,71 @@ lvim.plugins = {
       "simrat39/symbols-outline.nvim",
       cmd = "SymbolsOutline",
     },
+    {"puremourning/vimspector"},
     {
       "npxbr/glow.nvim",
       ft = {"markdown"}
     },
+     {
+      "tpope/vim-fugitive",
+      cmd = {
+        "G",
+        "Git",
+        "Gdiffsplit",
+        "Gread",
+        "Gwrite",
+        "Ggrep",
+        "GMove",
+        "GDelete",
+        "GBrowse",
+        "GRemove",
+        "GRename",
+        "Glgrep",
+        "Gedit"
+      },
+      ft = {"fugitive"}
+    },
+    {'rbong/vim-flog'},
+    {'skywind3000/vim-quickui'},
+    {'TamaMcGlinn/flog-menu'},
+    {'TamaMcGlinn/flog-forest'},
     {"fabi1cazenave/termopen.vim"},
+    {"simrat39/rust-tools.nvim",
+        config = function()
+          require("rust-tools").setup({
+            tools = {
+              autoSetHints = true,
+              hover_with_actions = true,
+              runnables = {
+                use_telescope = true,
+              },
+            },
+            server = {
+              cmd = { vim.fn.stdpath "data" .. "/lsp_servers/rust/rust-analyzer" },
+              on_attach = require("lvim.lsp").common_on_attach,
+              on_init = require("lvim.lsp").common_on_init,
+            },
+            })
+        end,
+        ft = { "rust", "rs" },
+    },
 }
 
--- bash
-lvim.lang.sh.linters = { { exe = "shellcheck" } }
-lvim.lang.rust.lsp = {{ exe = "rustfmt" }}
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  {
+    exe = "shellcheck", filetypes = {"sh"}
+  },
+  { exe = "flake8", filetypes = { "python" } },
+  { exe = "eslint", filetypes = { "javascript", "typescript" } },
 
--- javascript
-javascript = {"denols", "deno", "eslint" }
-rust = { "rust_analyzer", "rustfmt"}
-lvim.builtin.treesitter.highlight.enabled = true
+}
 
-
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup
+    {
+        {exe = "prettier", filetypes = {"markdown", "javascript", "typescript" } },
+        {exe = "rustfmt", filetypes = {"rust" } },
+        { exe = "uncrustify",args = {} }
+    }
 
