@@ -22,6 +22,7 @@ vim.opt.linebreak = true
 vim.opt.wrap = true
 vim.opt.foldenable = true
 vim.opt.foldmethod= "indent"
+vim.cmd("let g:vimspector_enable_mappings = 'HUMAN'")
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -52,14 +53,18 @@ lvim.keys.normal_mode["<A-9>"] = ":BufferGoto 9<cr>"
 lvim.keys.normal_mode["<A-p>"] = ":BufferPick<cr>"
 lvim.keys.normal_mode["<S-s>"] = ":lua require('spectre').open()<CR>"
 lvim.keys.term_mode["<Esc>"] = "<C-\\><C-n><cr>"
-lvim.builtin.dashboard.active = true
-lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.open_on_setup = true
 lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.nvimtree.hide_dotfiles = 0
 lvim.builtin.nvimtree.active = true
 lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.lualine.active = true
+lvim.builtin.lualine.style = "default"
+lvim.builtin.dashboard.active = true
+lvim.builtin.terminal.active = true
+lvim.builtin.bufferline.active = true
+
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -216,10 +221,14 @@ lvim.plugins = {
       ft = {"fugitive"}
     },
     {'rbong/vim-flog'},
+    {'samoshkin/vim-mergetool'},
     {'skywind3000/vim-quickui'},
+    {'unblevable/quick-scope'},
     {'TamaMcGlinn/flog-menu'},
     {'TamaMcGlinn/flog-forest'},
     {"fabi1cazenave/termopen.vim"},
+    {"sharksforarms/vimspector-gen"},
+    {"vim-scripts/LargeFile"},
     {"simrat39/rust-tools.nvim",
         config = function()
           require("rust-tools").setup({
